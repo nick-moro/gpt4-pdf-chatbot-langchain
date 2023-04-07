@@ -5,24 +5,24 @@ import { PromptTemplate } from 'langchain/prompts';
 import { CallbackManager } from 'langchain/callbacks';
 
 const CONDENSE_PROMPT =
-  PromptTemplate.fromTemplate(`Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+  PromptTemplate.fromTemplate(`Dato il seguente dialogo e una domanda di approfondimento, riformula la domanda di approfondimento in modo che sia una domanda indipendente.
 
-Chat History:
-{chat_history}
-Follow Up Input: {question}
-Standalone question:`);
+  Cronologia chat:
+  {chat_history}
+  Domanda di approfondimento: {question}
+  Domanda indipendente:`);
 
 const QA_PROMPT = PromptTemplate.fromTemplate(
-  `You are an AI assistant providing helpful advice. You are given the following extracted parts of a long document and a question. Provide a conversational answer based on the context provided.
-You should only provide hyperlinks that reference the context below. Do NOT make up hyperlinks.
-If you can't find the answer in the context below, just say "Hmm, I'm not sure." Don't try to make up an answer.
-If the question is not related to the context, politely respond that you are tuned to only answer questions that are related to the context.
+  `Sei un assistente IA che fornisce consigli utili. Ti vengono dati i seguenti estratti di un lungo documento e una domanda. Fornisci una risposta conversazionale basata sul contesto fornito.
+Dovresti fornire solo collegamenti ipertestuali che fanno riferimento al contesto sottostante. NON inventare collegamenti ipertestuali.
+Se non riesci a trovare la risposta nel contesto sottostante, di semplicemente "Hmm, non ne sono sicuro". Non cercare di inventare una risposta.
+Se la domanda non è correlata al contesto, rispondi educatamente che sei predisposto a rispondere solo alle domande correlate al contesto.
 
-Question: {question}
-=========
+Domanda: {question}
+===================
 {context}
-=========
-Answer in Markdown:`,
+====================
+Risposta in Markdown:`,
 );
 
 export const makeChain = (
